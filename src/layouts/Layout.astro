@@ -1,0 +1,44 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Quentin Maestripieri – Crisis Consultant & Interim Manager",
+  description = "I manage your mission-critical teams and projects out of crisis. Specialized in high-octane interventions with 24/7 engagement.",
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:site_name" content="Quentin Maestripieri" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="preload" href="/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Quentin Maestripieri",
+    "jobTitle": "Crisis Consultant & Interim Manager",
+    "description": "Specialized in high-octane corporate interventions and interim management",
+    "email": "quentin.maestripieri@gmail.com",
+  })} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Satoshi Font ─────────────────────────────────────── */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Light.woff2') format('woff2'),
+       url('/fonts/Satoshi-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('/fonts/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('/fonts/Satoshi-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('/fonts/Satoshi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design Tokens ────────────────────────────────────── */
+:root {
+  --color-bg-primary:    #0c0c0c;
+  --color-bg-secondary:  #131313;
+  --color-bg-tertiary:   #1a1a1a;
+  --color-text-primary:  #f0ece6;
+  --color-text-secondary:#c8c0b4;
+  --color-text-muted:    #7a7166;
+  --color-accent:        #d4a574;
+  --color-accent-dim:    rgba(212,165,116,0.15);
+  --color-border:        rgba(240,236,230,0.08);
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  font-family: 'Satoshi', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+@layer components {
+  .container-main {
+    @apply max-w-6xl mx-auto px-6;
+  }
+
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+
+  /* ── Background utilities ─────────────────────────── */
+  .bg-primary   { background-color: var(--color-bg-primary); }
+  .bg-secondary { background-color: var(--color-bg-secondary); }
+  .bg-tertiary  { background-color: var(--color-bg-tertiary); }
+
+  /* ── Typography ───────────────────────────────────── */
+  .heading-xl {
+    @apply text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight;
+    color: var(--color-text-primary);
+  }
+  .heading-lg {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight;
+    color: var(--color-text-primary);
+  }
+  .heading-md {
+    @apply text-xl font-semibold leading-snug;
+    color: var(--color-text-primary);
+  }
+  .text-body {
+    @apply text-base leading-relaxed;
+    color: var(--color-text-secondary);
+  }
+  .text-body-sm {
+    @apply text-sm leading-relaxed;
+    color: var(--color-text-secondary);
+  }
+  .text-muted { color: var(--color-text-muted); }
+  .text-accent { color: var(--color-accent); }
+
+  .label {
+    @apply text-xs font-medium uppercase tracking-widest;
+    color: var(--color-text-muted);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-text-primary) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Buttons ──────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200;
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+  }
+  .btn-primary:hover {
+    @apply scale-105;
+    filter: brightness(1.08);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* ── Cards ────────────────────────────────────────── */
+  .card {
+    @apply rounded-2xl transition-all duration-300;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+  }
+  .card:hover {
+    border-color: rgba(212,165,116,0.25);
+  }
+
+  /* ── Badges ───────────────────────────────────────── */
+  .years-badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full;
+    background-color: var(--color-accent-dim);
+    color: var(--color-accent);
+  }
+
+  .number-badge {
+    @apply absolute top-6 right-6 text-6xl font-bold select-none pointer-events-none;
+    color: rgba(240,236,230,0.04);
+    line-height: 1;
+  }
+
+  /* ── Divider ──────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  /* ── Link hover ───────────────────────────────────── */
+  .link-hover {
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+  }
+  .link-hover:hover { color: var(--color-text-primary); }
+
+  /* ── Accent icon bg ───────────────────────────────── */
+  .bg-accent-subtle { background-color: var(--color-accent-dim); }
+
+  /* ── Nav ──────────────────────────────────────────── */
+  .nav-glass {
+    background-color: rgba(12,12,12,0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* ── Animation delays ─────────────────────────────────── */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Testimonials scroll strip ────────────────────────── */
+.testimonials-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+}
+.testimonials-track:hover { animation-play-state: paused; }
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

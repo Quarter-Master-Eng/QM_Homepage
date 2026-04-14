@@ -6,8 +6,11 @@ export default {
       fontFamily: {
         sans: ['Satoshi', 'system-ui', 'sans-serif'],
       },
+      fontSize: {
+        sm: '0.925rem', // 15px
+      },
       colors: {
-        accent: '#d4a574',
+        accent: '#7F7F7D',
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease forwards',

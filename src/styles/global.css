@@ -45,15 +45,21 @@
 
 /* ── Design Tokens ────────────────────────────────────── */
 :root {
-  --color-bg-primary:    #0c0c0c;
-  --color-bg-secondary:  #131313;
-  --color-bg-tertiary:   #1a1a1a;
-  --color-text-primary:  #f0ece6;
-  --color-text-secondary:#c8c0b4;
-  --color-text-muted:    #7a7166;
-  --color-accent:        #d4a574;
-  --color-accent-dim:    rgba(212,165,116,0.15);
-  --color-border:        rgba(240,236,230,0.08);
+  --color-bg-primary:      #0c0c0c; /*  100% black            */
+  --color-bg-secondary:    #131313; /*   93% black            */
+  --color-bg-tertiary:     #749ed4; /*   nice blue            */
+  --color-text-primary:    #f5f1eb; /*  creamy white          */
+  --color-text-secondary:  #7F7F7D; /*  Silver Lining         */
+  --color-text-tertiary:   #0c0c0c; /*  100% black            */
+  --color-text-muted:      #a6a19a; /*  darker white          */
+  --color-accent:          #7F7F7D; /*  Silver Lining         */
+  --color-accent-dim:      rgba(127,127,125,0.15);
+  --color-border:          rgba(127,127,125,0.15);
+  --color-border-accent:   #749ed4; /*   nice blue            */
+  /* #d41ed1  : test violet    		  */
+  /* #749ed4  : nice Blue        	  */
+  /* #7F7F7D  : Silver Lining         */
+  /* #191919  :  90% black            */
 }
 
 /* ── Base ─────────────────────────────────────────────── */
@@ -94,16 +100,16 @@ body {
     color: var(--color-text-primary);
   }
   .heading-md {
-    @apply text-xl font-semibold leading-snug;
+    @apply text-2xl font-bold leading-snug;
     color: var(--color-text-primary);
   }
   .text-body {
     @apply text-base leading-relaxed;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
   }
   .text-body-sm {
     @apply text-sm leading-relaxed;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
   }
   .text-muted { color: var(--color-text-muted); }
   .text-accent { color: var(--color-accent); }
@@ -122,23 +128,27 @@ body {
 
   /* ── Buttons ──────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200;
-    background-color: var(--color-accent);
-    color: var(--color-bg-primary);
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200;
+    border-color: var(--color-bg-tertiary);
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
   }
   .btn-primary:hover {
     @apply scale-105;
-    filter: brightness(1.08);
+    filter: brightness(1.1);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-200;
-    border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-  }
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200;
+    border: 1px solid var(--color-bg-tertiary);
+    color: var(--color-bg-tertiary);
+  }	
   .btn-secondary:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    border-color: var(--color-bg-tertiary);
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
+    @apply scale-105;
+    filter: brightness(1.1);
   }
 
   /* ── Cards ────────────────────────────────────────── */
@@ -148,21 +158,27 @@ body {
     border: 1px solid var(--color-border);
   }
   .card:hover {
-    border-color: rgba(212,165,116,0.25);
+    border-color: rgba(116, 158, 212,0.25);
+    filter: brightness(1.1);
   }
 
   /* ── Badges ───────────────────────────────────────── */
-  .years-badge {
+  .duration-badge {
     @apply inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full;
-    background-color: var(--color-accent-dim);
+    background-color: var(--color-bg-secondary);
     color: var(--color-accent);
   }
-
+  .offer-badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border-accent);
+  }
   .number-badge {
     @apply absolute top-6 right-6 text-6xl font-bold select-none pointer-events-none;
     color: rgba(240,236,230,0.04);
     line-height: 1;
-  }
+  }	
 
   /* ── Divider ──────────────────────────────────────── */
   .divider {
@@ -172,10 +188,27 @@ body {
 
   /* ── Link hover ───────────────────────────────────── */
   .link-hover {
-    color: var(--color-text-secondary);
-    transition: color 0.2s;
+    position: relative;
+    color: var(--color-text-primary);
+    transition: color 0.3s;
   }
-  .link-hover:hover { color: var(--color-text-primary); }
+  .link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+  .link-hover:hover {
+    color: var(--color-border-accent);
+    font-style: bold;
+  }
+  .link-hover:hover::after {
+    width: 100%;
+  }
 
   /* ── Accent icon bg ───────────────────────────────── */
   .bg-accent-subtle { background-color: var(--color-accent-dim); }
